@@ -1,0 +1,11 @@
+1. In src/main/java/edu.columbia.main/configuration/ConfigFromFile.properties:
+
+productionScarpingFolderPath=productionScrapingFolder/
+
+2. After editing config file, run "mvn clean install" again.
+
+3. Scrape twitter with this command:
+
+java -jar target/Babler-1.0.jar -m twitterCodeSwitch --langs en jp --seedsFolder ~/Code/Babler/src/main/resources/languageData/
+
+4. Find tweets in productionScrapingFolder
