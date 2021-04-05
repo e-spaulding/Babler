@@ -7,6 +7,10 @@ import com.vdurmont.emoji.Fitzpatrick;
 
 import java.util.ArrayList;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * Created by Gideon on 9/7/15.
  */
@@ -59,6 +63,23 @@ public class TwitterNormalizer {
         //remove all emojis
         for (Emoji emoji : EmojiManager.getAll()) {
             str = str.replaceAll(emoji.getUnicode(), "");
+        }
+
+        // added for Elizabeth's jp-en data collection
+        // remove all kaomoji (read in from file)
+        try{
+            File kaomojiFile = new File("kaomoji.txt");
+            Scanner scanner = new Scanner(kaomojiFile);
+            while(scanner.hasNextLine()){
+                String kaomoji = scanner.nextLine();
+                kaomoji = kaomoji.trim();
+
+                // Remove kaomoji
+                str = str.replaceAll(kaomoji, "");
+            }
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
         }
 
         return str;
