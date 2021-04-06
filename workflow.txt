@@ -1,11 +1,13 @@
-1. In src/main/java/edu.columbia.main/configuration/ConfigFromFile.properties:
+1. In src/main/java/edu/columbia/main/configuration/ConfigFromFile.properties:
 
-productionScarpingFolderPath=productionScrapingFolder/
+productionScarpingFolderPath=data/
 
-2. After editing config file, run "mvn clean install" again.
+2. Change the filepath in src/main/java/edu/columbia/main/normalization/TwitterNormalizer.java to the correct filepath on the current machine
 
-3. Scrape twitter with this command:
+3. After editing config file and others, run "mvn clean install" again.
 
-java -jar target/Babler-1.0.jar -m twitterCodeSwitch --langs en jp --seedsFolder ~/Code/Babler/src/main/resources/languageData/
+4. Scrape twitter with this command:
 
-4. Find tweets in productionScrapingFolder
+java -jar target/Babler-1.0.jar -m twitterCodeSwitch --langs en jp --seedsFolder ~/Babler/src/main/resources/languageData/
+
+5. Find tweets in data/

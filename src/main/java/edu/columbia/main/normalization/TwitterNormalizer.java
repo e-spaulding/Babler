@@ -51,6 +51,13 @@ public class TwitterNormalizer {
         return tweet;
     }
 
+    public String toUnicode(String str){
+        String unicodeString = "";
+        for (int i = 0; i < str.length(); i++){
+            unicodeString += "\\u" + Integer.toHexString(str.charAt(i) | 0x10000).substring(1);
+        }
+        return unicodeString;
+    }
 
     /**
      * Removes all emojis and variations from a String
@@ -68,14 +75,15 @@ public class TwitterNormalizer {
         // added for Elizabeth's jp-en data collection
         // remove all kaomoji (read in from file)
         try{
-            File kaomojiFile = new File("kaomoji.txt");
+            File kaomojiFile = new File("/Users/elizabeth/Code/Babler/src/main/resources/kaomoji.txt");
             Scanner scanner = new Scanner(kaomojiFile);
             while(scanner.hasNextLine()){
                 String kaomoji = scanner.nextLine();
                 kaomoji = kaomoji.trim();
+                String unicodeKaomoji = toUnicode(kaomoji);
 
                 // Remove kaomoji
-                str = str.replaceAll(kaomoji, "");
+                str = str.replaceAll(unicodeKaomoji, "");
             }
         }
         catch(FileNotFoundException e){

@@ -22,7 +22,7 @@ public class TwitterNormalizerTest {
 
         Logger log = Logger.getLogger(TwitterNormalizerTest.class);
 
-        File folder = new File("/Users/Gideon/Documents/dev/Babel/scraping/lit/twitter");
+        File folder = new File("/Users/elizabeth/Code/Babler/emoji_removal/");
         for (File tweetFile : folder.listFiles()) {
             String origData = FileUtils.readFileToString(tweetFile, "UTF-8");
             String data = new TwitterNormalizer().removeEmojis(origData);
@@ -32,6 +32,7 @@ public class TwitterNormalizerTest {
             }
         }
     }
+
 
 
 
